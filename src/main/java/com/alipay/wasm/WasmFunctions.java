@@ -1,21 +1,35 @@
 package com.alipay.wasm;
 
 
-import org.teavm.interop.Export;
+import de.inetsoftware.jwebassembly.JWebAssembly;
+import de.inetsoftware.jwebassembly.api.annotation.Export;
+import de.inetsoftware.jwebassembly.api.annotation.Import;
+
+import java.io.File;
+import java.net.URL;
 
 public class WasmFunctions {
 
-    @Export(name = "thePurposeOfLife")
-    public static int getThePurposeOfLife() {
-        return 43;
-    }
-
-    @Export(name = "hello")
+    @Export
     public static int hello() {
         return 43;
     }
 
-    public static void main(String[] args) {
+    @Import
+    public static int max(int a, int b) {
+        return Math.max(a, b);
+    }
 
+    public static void main(String[] args) {
+        File file = new File("build/test.wasm");
+        JWebAssembly wasm = new JWebAssembly();
+
+        Class clazz = WasmFunctions.class;
+        URL url = clazz.getResource("/" + clazz.getName().replace(".", "/") + ".class");
+        wasm.addFile(url);
+
+        System.out.println(wasm.compileToText());
+
+        wasm.compileToBinary(file);
     }
 }

@@ -16,7 +16,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <log4j2-version>2.13.3</log4j2-version>
 
-        <wasm.version>0.6.0</wasm.version>
+        <wasm.version>0.3</wasm.version>
     </properties>
 
     <dependencies>
@@ -29,21 +29,14 @@
         </dependency>
 
         <dependency>
-            <groupId>org.teavm</groupId>
-            <artifactId>teavm-classlib</artifactId>
+            <groupId>de.inetsoftware</groupId>
+            <artifactId>jwebassembly-api</artifactId>
             <version>${wasm.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>org.teavm</groupId>
-            <artifactId>teavm-jso-apis</artifactId>
-            <version>${wasm.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.teavm</groupId>
-            <artifactId>teavm-interop</artifactId>
+            <groupId>de.inetsoftware</groupId>
+            <artifactId>jwebassembly-compiler</artifactId>
             <version>${wasm.version}</version>
         </dependency>
 
@@ -51,43 +44,6 @@
 
     <build>
 
-        <plugins>
-            <plugin>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>3.2.3</version>
-                <configuration>
-                    <webResources>
-                        <resource>
-                            <directory>${project.build.directory}/generated/wasm</directory>
-                        </resource>
-                    </webResources>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.teavm</groupId>
-                <artifactId>teavm-maven-plugin</artifactId>
-                <version>${wasm.version}</version>
-                <executions>
-                    <execution>
-                        <id>wasm-client</id>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                        <configuration>
-                            <targetDirectory>${project.build.directory}/generated/wasm/wasm</targetDirectory>
-                            <mainClass>com.alipay.wasm.WasmFunctions</mainClass>
-                            <debugInformationGenerated>true</debugInformationGenerated>
-                            <targetType>WEBASSEMBLY</targetType>
-                            <optimizationLevel>FULL</optimizationLevel>
-                            <heapSize>8</heapSize>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-        </plugins>
     </build>
 
 </project>
