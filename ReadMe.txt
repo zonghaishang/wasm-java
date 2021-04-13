@@ -5,14 +5,6 @@ Camel Java Router Project
 
 To build this project use
 
-    mvn install
+    cd src/main/java
 
-=== How to run
-
-You can run this example using
-
-    mvn camel:run
-
-=== More information
-
-You can find more information about Apache Camel at the website: http://camel.apache.org/
+    java -jar ../../../bytecoder-cli-2021-03-08-executable.jar -classpath=. -mainclass=com.alipay.wasm.WasmFunctions -builddirectory=. -backend=wasm -minify=false
