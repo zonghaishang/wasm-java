@@ -15,7 +15,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <log4j2-version>2.13.3</log4j2-version>
-        
+
     </properties>
 
     <dependencies>
@@ -27,10 +27,35 @@
             <version>${log4j2-version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>de.mirkosertic.bytecoder</groupId>
+            <artifactId>bytecoder.api</artifactId>
+            <version>2021-03-08</version>
+        </dependency>
+
     </dependencies>
 
     <build>
-
+        <plugins>
+            <plugin>
+                <groupId>de.mirkosertic.bytecoder</groupId>
+                <artifactId>bytecoder-mavenplugin</artifactId>
+                <version>2021-03-08</version>
+                <configuration>
+                    <mainClass>com.alipay.wasm.WasmFunctions</mainClass>
+                    <backend>wasm</backend>
+                    <enableExceptionHandling>false</enableExceptionHandling>
+                    <optimizationLevel>ALL</optimizationLevel>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
     </build>
 
 </project>
