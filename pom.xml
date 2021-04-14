@@ -16,7 +16,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <log4j2-version>2.13.3</log4j2-version>
 
-        <wasm.version>0.6.0</wasm.version>
+        <wasm.version>0.7.0-SNAPSHOT</wasm.version>
     </properties>
 
     <dependencies>
@@ -81,7 +81,7 @@
                             <debugInformationGenerated>true</debugInformationGenerated>
                             <targetType>WEBASSEMBLY</targetType>
                             <optimizationLevel>FULL</optimizationLevel>
-                            <heapSize>8</heapSize>
+                            <maxHeapSize>8</maxHeapSize>
                         </configuration>
                     </execution>
                 </executions>
