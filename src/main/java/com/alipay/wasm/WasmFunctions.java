@@ -12,15 +12,15 @@ public class WasmFunctions {
 
     @Export
     public static int hello() {
+        max(1, 2);
         return 43;
     }
 
     @Import
-    public static int max(int a, int b) {
-        return Math.max(a, b);
-    }
+    public static native int max(int a, int b);
 
     public static void main(String[] args) {
+
         File file = new File("build/test.wasm");
         JWebAssembly wasm = new JWebAssembly();
 
